@@ -13,7 +13,7 @@ def record_audio():
     audio_data = []
     
     try:
-        # We use a stream so we can record for an indefinite amount of time
+        #use a stream so we can record for an indefinite amount of time
         with sd.InputStream(samplerate=FS, channels=1, dtype='int16') as stream:
             while True:
                 chunk, overflowed = stream.read(1024)
@@ -36,7 +36,7 @@ def transcribe_and_summarize(audio_file):
     # 2. Summarize (Local Ollama)
     print(" Creating notes...")
     prompt = f"Convert this lecture transcript into structured notes with LaTeX for formulas:\n\n{transcript}"
-    
+    #Use any model
     response = ollama.chat(model='gemma3:4b', messages=[
         {'role': 'user', 'content': prompt},
     ])
